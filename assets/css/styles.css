@@ -1,0 +1,1062 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Sora:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --brand: #db1f26;
+  --brand-secondary: #171717;
+  --brand-contrast: #ffffff;
+  --brand-soft: #f7d9db;
+  --brand-dark: #111111;
+  --surface: #fbfbfb;
+  --surface-strong: #ffffff;
+  --text: #121212;
+  --muted: #5e5e5e;
+  --line: rgba(18, 18, 18, 0.1);
+  --line-strong: rgba(18, 18, 18, 0.16);
+  --shadow: 0 24px 70px rgba(18, 18, 18, 0.09);
+  --radius-xl: 32px;
+  --radius-lg: 24px;
+  --radius-md: 18px;
+  --radius-sm: 14px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Sora", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, color-mix(in srgb, var(--brand) 12%, transparent), transparent 24%),
+    linear-gradient(180deg, var(--surface) 0%, #ffffff 52%, var(--surface) 100%);
+}
+
+body[data-dealer="autos-sv"] {
+  background:
+    radial-gradient(circle at 16% 10%, rgba(219, 31, 38, 0.12), transparent 18%),
+    radial-gradient(circle at 88% 14%, rgba(23, 23, 23, 0.06), transparent 18%),
+    linear-gradient(180deg, #fafafa 0%, #ffffff 48%, #f7f7f7 100%);
+}
+
+body[data-dealer="matesich-autos"] {
+  background:
+    radial-gradient(circle at 82% 10%, rgba(239, 35, 44, 0.12), transparent 18%),
+    linear-gradient(180deg, #fff7f8 0%, #ffffff 52%, #fff7f8 100%);
+}
+
+body[data-dealer="montreal-autos"] {
+  background:
+    radial-gradient(circle at 82% 12%, rgba(19, 159, 228, 0.16), transparent 20%),
+    radial-gradient(circle at 16% 10%, rgba(11, 29, 77, 0.08), transparent 16%),
+    linear-gradient(180deg, #f5f9fe 0%, #ffffff 54%, #f5f9fe 100%);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.hub-shell,
+.site-shell {
+  width: min(1220px, calc(100% - 36px));
+  margin: 0 auto;
+}
+
+.hub-shell {
+  padding: 40px 0 60px;
+}
+
+.eyebrow,
+.micro-copy {
+  margin: 0;
+  color: var(--brand);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hub-hero {
+  max-width: 820px;
+}
+
+.hub-hero h1,
+.hero-copy h1,
+.vehicle-summary h1 {
+  margin: 12px 0 18px;
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+}
+
+.hub-hero h1,
+.hero-copy h1 {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+}
+
+.vehicle-summary h1 {
+  font-size: clamp(2.6rem, 5vw, 4.6rem);
+}
+
+.hub-copy,
+.lead,
+.section-heading p,
+.inventory-card p,
+.service-card p,
+.quote-card p,
+.detail-card p,
+.contact-band p,
+.vehicle-summary p,
+.vehicle-gallery__hint p,
+.related-card p {
+  color: var(--muted);
+  line-height: 1.72;
+}
+
+.hub-grid,
+.hub-features,
+.inventory-grid,
+.service-grid,
+.testimonial-section,
+.stats-row,
+.trust-strip,
+.vehicle-detail-grid,
+.vehicle-info-grid,
+.related-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.hub-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 26px;
+}
+
+.hub-card,
+.hub-note,
+.inventory-card,
+.service-card,
+.quote-card,
+.stat-card,
+.contact-band,
+.chat-widget,
+.vehicle-gallery,
+.vehicle-summary,
+.detail-card,
+.related-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
+}
+
+.hub-card {
+  padding: 28px;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--card-brand) 9%, white), white),
+    var(--card-surface);
+}
+
+.hub-card__brand {
+  display: flex;
+  align-items: center;
+  min-height: 90px;
+  margin-bottom: 8px;
+}
+
+.hub-card__logo {
+  max-width: 220px;
+  max-height: 78px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.hub-card h2,
+.section-heading h2,
+.service-card h3,
+.detail-card h2,
+.related-card h3 {
+  margin: 0 0 12px;
+}
+
+.hub-card__list,
+.spec-list,
+.detail-list,
+.vehicle-summary__list {
+  margin: 18px 0 22px;
+  padding: 0;
+  list-style: none;
+}
+
+.hub-card__list li,
+.spec-list li,
+.detail-list li,
+.vehicle-summary__list li {
+  padding: 11px 0;
+  border-top: 1px solid var(--line);
+}
+
+.hub-card__actions,
+.hero-actions,
+.contact-band__actions,
+.vehicle-summary__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 18px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--brand), color-mix(in srgb, var(--brand) 72%, var(--brand-secondary)));
+  color: var(--brand-contrast);
+  font-size: 0.94rem;
+  font-weight: 600;
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px color-mix(in srgb, var(--brand) 22%, transparent);
+}
+
+.button--ghost {
+  border-color: var(--line-strong);
+  background: transparent;
+  color: var(--text);
+}
+
+.price-pill,
+.inventory-card__badge,
+.chat-widget__status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--brand) 12%, white);
+  color: var(--brand-dark);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.price-stack {
+  display: grid;
+  gap: 6px;
+}
+
+.price-stack small {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.hub-note {
+  margin-top: 24px;
+  padding: 28px;
+}
+
+.hub-features {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.hub-features article,
+.service-card,
+.quote-card,
+.detail-card,
+.related-card {
+  padding: 22px;
+}
+
+.site-shell {
+  padding: 16px 0 34px;
+}
+
+.site-header {
+  position: sticky;
+  top: 10px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 14px 18px;
+  margin: 10px auto 24px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.84);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 14px 36px rgba(18, 18, 18, 0.06);
+}
+
+body[data-dealer="montreal-autos"] .site-header {
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.brand-mark__media {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 84px;
+  min-height: 54px;
+}
+
+.brand-mark__logo {
+  max-width: 170px;
+  max-height: 58px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.brand-mark__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--brand), var(--brand-secondary));
+  color: var(--brand-contrast);
+  font-weight: 700;
+}
+
+.brand-mark__text {
+  display: grid;
+  gap: 4px;
+}
+
+.brand-mark__text strong {
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+}
+
+.brand-mark__text small {
+  color: var(--muted);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+.main-nav a:hover {
+  color: var(--text);
+}
+
+.hero-section,
+.inventory-section,
+.services-section,
+.testimonial-section,
+.vehicle-page,
+.related-section {
+  margin-bottom: 24px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.hero-copy {
+  padding: 26px 0 12px;
+}
+
+.lead {
+  max-width: 65ch;
+  font-size: 1.05rem;
+}
+
+.stats-row {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 26px;
+}
+
+.stat-card {
+  padding: 18px;
+}
+
+.stat-card strong {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.hero-stage {
+  position: relative;
+  overflow: hidden;
+  min-height: 500px;
+  padding: 18px;
+  border-radius: var(--radius-xl);
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--brand) 22%, transparent), transparent 28%),
+    linear-gradient(160deg, color-mix(in srgb, var(--brand) 6%, white), rgba(255, 255, 255, 0.74));
+}
+
+.hero-stage__panel {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 18px 36px rgba(18, 18, 18, 0.08);
+}
+
+.hero-stage__panel p,
+.hero-stage__panel strong,
+.hero-stage__panel small {
+  display: block;
+}
+
+.hero-stage__panel p {
+  margin: 0 0 10px;
+  color: var(--muted);
+}
+
+.hero-stage__panel strong {
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+
+.vehicle-photo,
+.vehicle-visual {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  overflow: hidden;
+  border-radius: calc(var(--radius-xl) - 8px);
+}
+
+.vehicle-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vehicle-photo--compact,
+.vehicle-visual.compact {
+  min-height: 230px;
+}
+
+.vehicle-visual {
+  position: relative;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--brand) 10%, white), rgba(255, 255, 255, 0.24)),
+    linear-gradient(135deg, color-mix(in srgb, var(--brand-secondary) 84%, black), color-mix(in srgb, var(--brand) 34%, black));
+}
+
+.vehicle-visual__glow {
+  position: absolute;
+  right: -18%;
+  bottom: 12%;
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--brand) 56%, transparent), transparent 68%);
+}
+
+.vehicle-visual__panel {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  right: 24px;
+  color: #ffffff;
+}
+
+.vehicle-visual__panel span,
+.vehicle-visual__panel small {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.vehicle-visual__panel strong {
+  display: block;
+  max-width: 10ch;
+  margin: 10px 0 8px;
+  font-family: "Instrument Serif", serif;
+  font-size: clamp(2.2rem, 5vw, 4.2rem);
+  font-weight: 400;
+  line-height: 0.94;
+  letter-spacing: -0.04em;
+}
+
+.vehicle-visual__road {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+  height: 116px;
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.24), transparent),
+    radial-gradient(circle at 24% 54%, rgba(255, 255, 255, 0.88) 0 20px, transparent 21px),
+    radial-gradient(circle at 76% 54%, rgba(255, 255, 255, 0.88) 0 20px, transparent 21px),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.92), color-mix(in srgb, var(--brand) 26%, white));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.24), 0 18px 38px rgba(18, 18, 18, 0.18);
+}
+
+.trust-strip {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.trust-strip__item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.trust-strip__item span {
+  flex: none;
+  width: 11px;
+  height: 11px;
+  margin-top: 8px;
+  border-radius: 50%;
+  background: var(--brand);
+}
+
+.section-heading {
+  display: grid;
+  gap: 8px;
+  max-width: 760px;
+  margin-bottom: 20px;
+}
+
+.inventory-grid,
+.service-grid,
+.testimonial-section,
+.related-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.inventory-card,
+.related-card {
+  overflow: hidden;
+}
+
+.inventory-card__media,
+.related-card__media {
+  position: relative;
+}
+
+.inventory-card__badge {
+  position: absolute;
+  left: 18px;
+  bottom: 16px;
+}
+
+.inventory-card__body,
+.related-card__body {
+  padding: 20px;
+}
+
+.inventory-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.spec-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.spec-list li {
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.84);
+}
+
+.service-card h3 {
+  font-family: "Instrument Serif", serif;
+  font-size: 1.84rem;
+  font-weight: 400;
+}
+
+.quote-card {
+  display: grid;
+  align-content: space-between;
+  gap: 16px;
+}
+
+.contact-band,
+.vehicle-commercial-band {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 24px;
+}
+
+.chat-widget {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 30;
+  width: min(380px, calc(100vw - 24px));
+  overflow: hidden;
+}
+
+.chat-widget__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.chat-widget__identity,
+.chat-widget__header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chat-widget__identity {
+  min-width: 0;
+}
+
+.chat-widget__identity small,
+.chat-widget__identity strong {
+  display: block;
+}
+
+.chat-widget__identity small {
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.chat-widget__avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #ffffff;
+  border: 1px solid var(--line);
+}
+
+.chat-widget__toggle {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.chat-widget__body {
+  display: grid;
+  gap: 12px;
+}
+
+.chat-widget--collapsed .chat-widget__body {
+  display: none;
+}
+
+.chat-messages {
+  display: grid;
+  gap: 12px;
+  max-height: 280px;
+  overflow: auto;
+  padding: 14px 14px 0;
+}
+
+.chat-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.chat-row--user {
+  justify-content: flex-end;
+}
+
+.chat-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: none;
+  border: 1px solid var(--line);
+  background: #ffffff;
+}
+
+.chat-bubble {
+  max-width: 88%;
+  padding: 12px 14px;
+  border-radius: 18px;
+  font-size: 0.93rem;
+  line-height: 1.58;
+}
+
+.chat-bubble--bot {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.chat-bubble--user {
+  background: var(--brand);
+  color: var(--brand-contrast);
+}
+
+.chat-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 14px;
+}
+
+.suggestion-pill {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #ffffff;
+  padding: 10px 13px;
+  cursor: pointer;
+}
+
+.chat-form {
+  display: flex;
+  gap: 10px;
+  padding: 0 14px 14px;
+}
+
+.chat-form input {
+  flex: 1;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: #ffffff;
+}
+
+.vehicle-page {
+  display: grid;
+  gap: 24px;
+}
+
+.vehicle-detail-grid {
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+  align-items: start;
+}
+
+.vehicle-gallery {
+  padding: 20px;
+}
+
+.vehicle-gallery__main {
+  height: 510px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: #ffffff;
+}
+
+.vehicle-gallery__main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vehicle-gallery__main--visual {
+  padding: 18px;
+}
+
+.vehicle-gallery__fallback {
+  height: 100%;
+}
+
+.vehicle-gallery__main--visual .vehicle-visual,
+.vehicle-gallery__main--visual .vehicle-photo {
+  height: 100%;
+  min-height: 100%;
+}
+
+.vehicle-gallery__thumbs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.vehicle-thumb {
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.vehicle-thumb img {
+  width: 100%;
+  height: 92px;
+  object-fit: cover;
+}
+
+.vehicle-thumb.is-active {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--brand) 24%, transparent);
+}
+
+.vehicle-gallery__hint {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 16px 18px;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--brand) 4%, white);
+}
+
+.vehicle-summary {
+  padding: 24px;
+  position: sticky;
+  top: 102px;
+}
+
+.vehicle-summary__top {
+  margin-bottom: 18px;
+}
+
+.vehicle-summary__price {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.vehicle-summary__meta {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.vehicle-summary__seller {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin: 18px 0;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--brand) 4%, white);
+}
+
+.vehicle-summary__seller-logo {
+  width: 82px;
+  max-height: 48px;
+  object-fit: contain;
+  flex: none;
+}
+
+.vehicle-summary__seller strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.vehicle-summary__list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.vehicle-summary__list li span {
+  color: var(--muted);
+}
+
+.vehicle-info-grid {
+  grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+}
+
+.detail-card--wide {
+  min-height: 100%;
+}
+
+.detail-list li {
+  color: var(--text);
+}
+
+.related-card__body h3 {
+  font-size: 1.36rem;
+}
+
+.price-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+body[data-dealer="autos-sv"] .price-pill,
+body[data-dealer="autos-sv"] .inventory-card__badge,
+body[data-dealer="autos-sv"] .chat-widget__status {
+  background: rgba(219, 31, 38, 0.12);
+  color: #8f161b;
+}
+
+body[data-dealer="matesich-autos"] .site-header {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+body[data-dealer="montreal-autos"] .price-pill,
+body[data-dealer="montreal-autos"] .inventory-card__badge,
+body[data-dealer="montreal-autos"] .chat-widget__status {
+  background: rgba(19, 159, 228, 0.14);
+  color: #0d4b89;
+}
+
+@media (max-width: 1120px) {
+  .hub-grid,
+  .hub-features,
+  .trust-strip,
+  .inventory-grid,
+  .service-grid,
+  .testimonial-section,
+  .stats-row,
+  .related-grid,
+  .hero-grid,
+  .vehicle-detail-grid,
+  .vehicle-info-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero-grid > :first-child,
+  .vehicle-detail-grid > :first-child,
+  .vehicle-info-grid > :first-child {
+    grid-column: 1 / -1;
+  }
+
+  .main-nav {
+    display: none;
+  }
+
+  .vehicle-summary {
+    position: static;
+  }
+}
+
+@media (max-width: 820px) {
+  .hub-grid,
+  .hub-features,
+  .trust-strip,
+  .inventory-grid,
+  .service-grid,
+  .testimonial-section,
+  .stats-row,
+  .related-grid,
+  .hero-grid,
+  .vehicle-detail-grid,
+  .vehicle-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .site-header,
+  .contact-band,
+  .vehicle-commercial-band,
+  .chat-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .site-header {
+    border-radius: 28px;
+  }
+
+  .hub-shell,
+  .site-shell {
+    width: min(100%, calc(100% - 20px));
+  }
+
+  .vehicle-gallery__main,
+  .vehicle-gallery__main img {
+    height: 360px;
+  }
+
+  .vehicle-gallery__thumbs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .chat-widget {
+    position: static;
+    width: 100%;
+  }
+
+  .button,
+  .button--ghost {
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-stage {
+    min-height: 380px;
+  }
+
+  .hero-stage__panel {
+    position: static;
+    margin-top: 14px;
+  }
+
+  .brand-mark__logo {
+    max-width: 132px;
+  }
+
+  .vehicle-thumb img {
+    height: 82px;
+  }
+
+  .hub-hero h1,
+  .hero-copy h1,
+  .vehicle-summary h1 {
+    font-size: clamp(2.4rem, 13vw, 4rem);
+  }
+}
