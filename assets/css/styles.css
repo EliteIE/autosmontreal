@@ -313,53 +313,112 @@ main.hub-shell {
 }
 
 /* =====================================================================
-   Site header — ELITE SIGNATURE (fixed, transparent → frosted on scroll)
-   Pattern from elite.com.br: bg-transparent default, bg-white/80 +
-   backdrop-blur on scroll, rounded-glass CTA inside.
+   Site header — ELITE SIGNATURE PILL ISLAND
+   Padrão extraído de elite-site/src/components/Navbar.tsx:
+   pill rounded-full, fixed top:12px, max-width 72rem, bg white/82
+   com backdrop-blur permanente, shadow suave.
    ===================================================================== */
 
 .site-header {
   position: fixed;
-  top: 0;
+  top: 12px;
   left: 0;
   right: 0;
   z-index: 50;
-  width: 100%;
-  margin: 0;
-  padding: 16px 32px;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
+  width: auto;
+  height: 56px;
+  margin: 0 16px;
+  padding: 0 24px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 9999px;
+  box-shadow: 0 12px 45px rgba(15, 23, 42, 0.08);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  backdrop-filter: blur(40px) saturate(180%);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-lg);
-  transition: background-color 0.3s ease, backdrop-filter 0.3s ease,
-    box-shadow 0.3s ease, padding 0.3s ease;
+  gap: 24px;
+  pointer-events: auto;
 }
 
-.site-header.is-scrolled {
-  background: rgba(255, 255, 255, 0.82);
-  -webkit-backdrop-filter: blur(10px) saturate(160%);
-  backdrop-filter: blur(10px) saturate(160%);
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
-  padding-top: 12px;
-  padding-bottom: 12px;
+@media (min-width: 768px) {
+  .site-header {
+    margin: 0 auto;
+    max-width: 72rem;
+  }
 }
 
-/* CTA inside header gets Elite rounded-glass radius (12px) */
+/* CTA inside the pill: smaller pill button, BMW M black */
 .site-header .button {
-  border-radius: 12px;
-  padding: 10px 20px;
-  min-height: 40px;
-  height: 40px;
+  height: 36px;
+  min-height: 36px;
+  padding: 8px 20px;
+  border-radius: 9999px;
+  background: #000000;
+  color: #ffffff;
+  border: 1px solid #000000;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.site-header .button:hover {
+  transform: translateY(-1px);
+  background: #1c69d4; /* BMW heritage blue on hover */
+  border-color: #1c69d4;
+  color: #ffffff;
+}
+
+/* Shrink brand-mark + nav to fit inside the 56px pill */
+.site-header .brand-mark {
+  gap: 10px;
+}
+
+.site-header .brand-mark__media {
+  min-width: 36px;
+  min-height: 36px;
+  padding: 2px 4px;
+  border: none;
+  background: transparent;
+}
+
+.site-header .brand-mark__logo {
+  max-width: 110px;
+  max-height: 32px;
+}
+
+.site-header .brand-mark__icon {
+  width: 32px;
+  height: 32px;
+  font-size: 13px;
+}
+
+.site-header .brand-mark__text strong {
   font-size: 13px;
   letter-spacing: 1.2px;
 }
 
-.site-header .button:hover {
-  transform: scale(1.04);
+.site-header .brand-mark__text small {
+  font-size: 10px;
+  letter-spacing: 0.8px;
+}
+
+.site-header .main-nav {
+  gap: 28px;
+}
+
+.site-header .main-nav a {
+  font-size: 13px;
+  letter-spacing: 0.3px;
+  padding: 4px 0;
+  border-bottom: none;
+}
+
+.site-header .main-nav a:hover {
+  color: var(--c-ink);
+  border-bottom: none;
 }
 
 .brand-mark {
@@ -1930,18 +1989,27 @@ main.hub-shell {
   main.site-shell,
   main.detail-shell,
   main.hub-shell {
-    padding-top: 96px;
+    padding-top: 84px;
   }
 
   .site-header {
-    padding: 12px 16px;
+    height: 52px;
+    min-height: 52px;
+    margin: 0 12px;
+    padding: 0 14px;
+    gap: 12px;
+  }
+
+  .site-header .main-nav {
+    display: none;
   }
 
   .site-header .button {
-    padding: 8px 14px;
-    min-height: 36px;
-    height: 36px;
+    padding: 6px 14px;
+    min-height: 32px;
+    height: 32px;
     font-size: 12px;
+    border-radius: 9999px;
   }
 
   h1 {
