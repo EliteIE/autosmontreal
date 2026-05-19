@@ -248,14 +248,21 @@ h4 {
 
 .section-heading--split {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-between;
-  gap: var(--space-xl);
+  gap: var(--space-lg);
   max-width: none;
 }
 
 .section-heading--split > div {
   max-width: 760px;
+  min-width: 0;
+  flex: 1 1 360px;
+}
+
+.section-heading--split > .button {
+  flex: 0 0 auto;
 }
 
 /* =====================================================================
@@ -916,37 +923,50 @@ main.hub-shell {
 
 .intro-strip {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(360px, 0.9fr);
-  gap: var(--space-xxl);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 380px);
+  gap: var(--space-xl);
   align-items: start;
-  padding: var(--space-xxl) var(--space-xl);
+  padding: var(--space-xl);
   border-top: 1px solid var(--c-hairline);
   border-bottom: 1px solid var(--c-hairline);
   position: relative;
-  background:
-    radial-gradient(ellipse at 80% 50%, rgba(0, 0, 0, 0.03), transparent 60%),
-    linear-gradient(180deg, #ffffff 0%, var(--c-canvas) 100%);
+  background: #ffffff;
+  overflow: hidden;
 }
 
 .intro-strip__copy {
   padding: 0;
+  min-width: 0;
 }
 
 .intro-strip__copy h1 {
   margin: var(--space-md) 0 var(--space-lg);
-  max-width: 16ch;
+  font-size: clamp(40px, 5.5vw, 64px);
+  line-height: 1.02;
+  max-width: 14ch;
+  word-break: break-word;
   color: var(--c-ink);
+}
+
+.intro-strip__copy .lead {
+  max-width: 52ch;
 }
 
 .intro-strip__side {
   display: grid;
-  gap: var(--space-xl);
+  gap: var(--space-lg);
+  min-width: 0;
 }
 
 .hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-md);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-sm);
+}
+
+.hero-actions .button {
+  width: 100%;
+  justify-content: center;
 }
 
 /* FIX: stats stack vertically — no more text overflow in narrow side column */
