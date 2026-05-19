@@ -281,11 +281,11 @@ h4 {
   padding-bottom: var(--space-section);
 }
 
-/* Dealer page main wrapper — leaves room for the floating island header */
+/* Dealer page main wrapper — leaves room for the fixed Elite header */
 main.site-shell,
 main.detail-shell,
 main.hub-shell {
-  padding-top: 80px;
+  padding-top: 112px;
 }
 
 /* spacing rhythm: 96px between major editorial sections */
@@ -313,40 +313,53 @@ main.hub-shell {
 }
 
 /* =====================================================================
-   Site header — FLOATING ISLAND (Elite signature) over light canvas
+   Site header — ELITE SIGNATURE (fixed, transparent → frosted on scroll)
+   Pattern from elite.com.br: bg-transparent default, bg-white/80 +
+   backdrop-blur on scroll, rounded-glass CTA inside.
    ===================================================================== */
 
 .site-header {
-  position: sticky;
-  top: 16px;
-  z-index: 100;
-  margin: 16px auto 0;
-  width: min(1280px, calc(100% - 32px));
-  padding: 14px 24px;
-  background: #ffffff;
-  border: 1px solid var(--c-hairline);
-  border-radius: 0; /* sharp — BMW M */
-  box-shadow: var(--shadow-island);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  width: 100%;
+  margin: 0;
+  padding: 16px 32px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-lg);
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease,
+    box-shadow 0.3s ease, padding 0.3s ease;
 }
 
-.site-header::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -1px;
-  height: 4px;
-  background: var(--m-stripe-gradient);
-  opacity: 0;
-  transition: opacity 200ms ease;
+.site-header.is-scrolled {
+  background: rgba(255, 255, 255, 0.82);
+  -webkit-backdrop-filter: blur(10px) saturate(160%);
+  backdrop-filter: blur(10px) saturate(160%);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 
-.site-header:hover::after {
-  opacity: 0.9;
+/* CTA inside header gets Elite rounded-glass radius (12px) */
+.site-header .button {
+  border-radius: 12px;
+  padding: 10px 20px;
+  min-height: 40px;
+  height: 40px;
+  font-size: 13px;
+  letter-spacing: 1.2px;
+}
+
+.site-header .button:hover {
+  transform: scale(1.04);
 }
 
 .brand-mark {
@@ -1917,7 +1930,18 @@ main.hub-shell {
   main.site-shell,
   main.detail-shell,
   main.hub-shell {
-    padding-top: 72px;
+    padding-top: 96px;
+  }
+
+  .site-header {
+    padding: 12px 16px;
+  }
+
+  .site-header .button {
+    padding: 8px 14px;
+    min-height: 36px;
+    height: 36px;
+    font-size: 12px;
   }
 
   h1 {
