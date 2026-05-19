@@ -1,6 +1,6 @@
 /* =====================================================================
-   Montreal Autos — BMW M Design System
-   Canvas #000000 · White ink · UPPERCASE display · 0px corners
+   Montreal Autos — BMW M Design System (LIGHT MODE · Elite signature)
+   Canvas #f5f5f5 · Black ink · UPPERCASE display · 0px corners
    Inter (300/400/500/700) as the open-source substitute for
    BMW Type Next Latin.
    ===================================================================== */
@@ -8,27 +8,31 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap");
 
 :root {
-  /* Palette ---------------------------------------------------------- */
-  --c-canvas: #000000;
-  --c-surface-soft: #0d0d0d;
-  --c-surface-card: #1a1a1a;
-  --c-surface-elevated: #262626;
-  --c-carbon: #2b2b2b;
+  /* Palette — inverted to LIGHT while keeping BMW M language ----------- */
+  --c-canvas: #f5f5f5;
+  --c-surface-soft: #ffffff;
+  --c-surface-card: #ffffff;
+  --c-surface-elevated: #fafafa;
+  --c-carbon: #ededed;
 
-  --c-ink: #ffffff;
-  --c-body: #bbbbbb;
-  --c-body-strong: #e6e6e6;
-  --c-muted: #7e7e7e;
+  --c-ink: #000000;
+  --c-body: #2a2a2a;
+  --c-body-strong: #000000;
+  --c-muted: #6b6b6b;
 
-  --c-hairline: #3c3c3c;
-  --c-hairline-strong: #262626;
+  --c-hairline: #d4d4d4;
+  --c-hairline-strong: #e5e5e5;
 
+  /* M-stripe tricolor — UNCHANGED ------------------------------------ */
   --c-m-blue-light: #0066b1;
   --c-m-blue-dark: #1c69d4;
   --c-m-red: #e22718;
   --c-bmw-blue: #1c69d4;
 
-  /* Tokens ----------------------------------------------------------- */
+  /* Legacy on-dark token (now black for light surfaces) -------------- */
+  --c-on-dark: #000000;
+
+  /* Tokens ---------------------------------------------------------- */
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   --radius-none: 0px;
@@ -42,6 +46,9 @@
   --space-xl: 40px;
   --space-xxl: 64px;
   --space-section: 96px;
+
+  --shadow-island: 0 8px 24px rgba(0, 0, 0, 0.06);
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.04);
 
   --m-stripe-gradient: linear-gradient(
     90deg,
@@ -79,9 +86,22 @@ body {
   background: var(--c-canvas);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  position: relative;
 }
 
-/* Kill any legacy dealer-tinted gradient backgrounds. */
+/* M-stripe at the very top of every page — brand signature */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--m-stripe-gradient);
+  z-index: 200;
+  pointer-events: none;
+}
+
 body[data-dealer] {
   background: var(--c-canvas);
 }
@@ -114,7 +134,7 @@ ul {
 }
 
 /* =====================================================================
-   Typography — Display weight 700 UPPERCASE, body weight 300
+   Typography — Display weight 700 UPPERCASE black, body weight 300
    ===================================================================== */
 
 h1,
@@ -133,7 +153,7 @@ h6 {
 }
 
 h1 {
-  font-size: clamp(48px, 7.5vw, 80px);
+  font-size: clamp(44px, 7.5vw, 80px);
   line-height: 1;
 }
 
@@ -159,11 +179,11 @@ h4 {
   font-size: 18px;
   font-weight: 300;
   line-height: 1.55;
-  color: var(--c-body-strong);
+  color: var(--c-body);
   max-width: 60ch;
 }
 
-/* Eyebrow / micro-copy: 14px / 700 / 1.5px tracking UPPERCASE WHITE */
+/* Eyebrow / micro-copy: 14px / 700 / 1.5px tracking UPPERCASE BLACK */
 .eyebrow,
 .micro-copy {
   display: inline-block;
@@ -177,7 +197,7 @@ h4 {
 }
 
 .micro-copy {
-  color: var(--c-body);
+  color: var(--c-muted);
 }
 
 /* =====================================================================
@@ -261,6 +281,13 @@ h4 {
   padding-bottom: var(--space-section);
 }
 
+/* Dealer page main wrapper — leaves room for the floating island header */
+main.site-shell,
+main.detail-shell,
+main.hub-shell {
+  padding-top: 80px;
+}
+
 /* spacing rhythm: 96px between major editorial sections */
 .intro-strip,
 .buyer-intent,
@@ -286,22 +313,24 @@ h4 {
 }
 
 /* =====================================================================
-   Site header — black 64px nav bar
+   Site header — FLOATING ISLAND (Elite signature) over light canvas
    ===================================================================== */
 
 .site-header {
   position: sticky;
-  top: 0;
-  z-index: 30;
+  top: 16px;
+  z-index: 100;
+  margin: 16px auto 0;
+  width: min(1280px, calc(100% - 32px));
+  padding: 14px 24px;
+  background: #ffffff;
+  border: 1px solid var(--c-hairline);
+  border-radius: 0; /* sharp — BMW M */
+  box-shadow: var(--shadow-island);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-lg);
-  min-height: 80px;
-  padding: var(--space-md) 0;
-  margin: 0 0 var(--space-section);
-  background: var(--c-canvas);
-  border-bottom: 1px solid var(--c-hairline);
 }
 
 .site-header::after {
@@ -333,14 +362,15 @@ h4 {
   align-items: center;
   justify-content: center;
   min-width: 80px;
-  min-height: 56px;
-  background: var(--c-ink); /* white plate so dark logos remain visible on black */
-  padding: 6px 10px;
+  min-height: 48px;
+  background: #ffffff;
+  border: 1px solid var(--c-hairline);
+  padding: 4px 8px;
 }
 
 .brand-mark__logo {
-  max-width: 160px;
-  max-height: 52px;
+  max-width: 150px;
+  max-height: 44px;
   object-fit: contain;
   object-position: left center;
 }
@@ -349,11 +379,11 @@ h4 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 52px;
-  height: 52px;
+  width: 48px;
+  height: 48px;
   border-radius: var(--radius-none);
   background: var(--c-ink);
-  color: var(--c-canvas);
+  color: #ffffff;
   font-weight: 700;
   font-size: 16px;
   letter-spacing: 1.5px;
@@ -404,7 +434,7 @@ h4 {
 }
 
 /* =====================================================================
-   Buttons — rectangular, uppercase, letter-spaced, 0 radius
+   Buttons — BLACK on WHITE rectangles, uppercase, letter-spaced, 0 radius
    ===================================================================== */
 
 .button {
@@ -414,10 +444,10 @@ h4 {
   gap: var(--space-xs);
   min-height: 48px;
   padding: 16px 32px;
-  border: 1px solid var(--c-ink);
+  border: 1px solid #000000;
   border-radius: var(--radius-none);
-  background: var(--c-canvas);
-  color: var(--c-ink);
+  background: #000000;
+  color: #ffffff;
   font-family: var(--font-sans);
   font-size: 14px;
   font-weight: 700;
@@ -431,9 +461,9 @@ h4 {
 }
 
 .button:hover {
-  background: var(--c-ink);
-  color: var(--c-canvas);
-  border-color: var(--c-ink);
+  background: transparent;
+  color: #000000;
+  border-color: #000000;
 }
 
 .button:focus-visible {
@@ -443,17 +473,17 @@ h4 {
 
 .button--ghost {
   background: transparent;
-  color: var(--c-ink);
-  border-color: var(--c-ink);
+  color: #000000;
+  border-color: #000000;
 }
 
 .button--ghost:hover {
-  background: var(--c-ink);
-  color: var(--c-canvas);
+  background: #000000;
+  color: #ffffff;
 }
 
 /* =====================================================================
-   Buyer Intent — intent cards (text-only category-tab style)
+   Buyer Intent — intent cards
    ===================================================================== */
 
 .buyer-intent {
@@ -474,16 +504,18 @@ h4 {
   padding: var(--space-lg);
   border: 1px solid var(--c-hairline);
   border-radius: var(--radius-none);
-  background: var(--c-surface-card);
+  background: #ffffff;
   color: var(--c-ink);
   text-align: left;
   cursor: pointer;
   text-decoration: none;
-  transition: border-color 180ms ease, background-color 180ms ease;
+  box-shadow: var(--shadow-card);
+  transition: border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
 }
 
 .intent-card:hover {
   border-color: var(--c-ink);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
 .intent-card strong {
@@ -528,7 +560,7 @@ h4 {
   height: 48px;
   border: 1px solid var(--c-hairline);
   border-radius: var(--radius-full); /* the only legitimate rounded element */
-  background: var(--c-surface-card);
+  background: #ffffff;
   color: var(--c-ink);
   font-size: 20px;
   font-weight: 400;
@@ -537,12 +569,13 @@ h4 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 180ms ease, border-color 180ms ease;
+  box-shadow: var(--shadow-card);
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
 }
 
 .carousel-button:hover {
   background: var(--c-ink);
-  color: var(--c-canvas);
+  color: #ffffff;
   border-color: var(--c-ink);
 }
 
@@ -564,16 +597,18 @@ h4 {
 .inventory-slide {
   display: flex;
   flex-direction: column;
-  background: var(--c-surface-card);
+  background: #ffffff;
   border: 1px solid var(--c-hairline);
   border-radius: var(--radius-none);
   overflow: hidden;
   scroll-snap-align: start;
-  transition: border-color 200ms ease;
+  box-shadow: var(--shadow-card);
+  transition: border-color 200ms ease, box-shadow 200ms ease;
 }
 
 .inventory-slide:hover {
   border-color: var(--c-ink);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
 .inventory-slide.is-hidden {
@@ -582,7 +617,7 @@ h4 {
 
 .inventory-slide__media {
   position: relative;
-  background: var(--c-surface-soft);
+  background: var(--c-surface-elevated);
 }
 
 .inventory-slide__badge {
@@ -595,8 +630,8 @@ h4 {
   padding: 0 var(--space-sm);
   border: 1px solid var(--c-ink);
   border-radius: var(--radius-none);
-  background: var(--c-canvas);
-  color: var(--c-ink);
+  background: var(--c-ink);
+  color: #ffffff;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -620,7 +655,7 @@ h4 {
 
 .inventory-slide__heading h3 {
   margin: var(--space-xs) 0 0;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0;
@@ -630,11 +665,11 @@ h4 {
 
 .inventory-slide__meta {
   margin: 0;
-  font-size: 14px;
-  font-weight: 300;
-  color: var(--c-body);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--c-muted);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
 }
 
 .inventory-slide__copy {
@@ -645,22 +680,32 @@ h4 {
   color: var(--c-body);
 }
 
+/* FIX: footer is COLUMN stack — button + hook stack vertically */
 .inventory-slide__footer {
-  display: grid;
-  gap: var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--c-hairline);
+}
+
+.inventory-slide__footer .button {
+  width: 100%;
+  justify-content: center;
 }
 
 .inventory-slide__hook {
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.5px;
-  color: var(--c-muted);
-  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--c-body);
+  line-height: 1.4;
 }
 
 /* =====================================================================
-   Vehicle photo + fallback visual
+   Vehicle photo + fallback visual (light theme)
    ===================================================================== */
 
 .vehicle-photo,
@@ -669,7 +714,7 @@ h4 {
   min-height: 320px;
   border-radius: var(--radius-none);
   overflow: hidden;
-  background: var(--c-canvas);
+  background: #ffffff;
   border-bottom: 1px solid var(--c-hairline);
 }
 
@@ -698,8 +743,9 @@ h4 {
 .vehicle-visual {
   position: relative;
   background:
-    radial-gradient(ellipse at 70% 60%, rgba(28, 105, 212, 0.12), transparent 60%),
-    linear-gradient(180deg, var(--c-canvas) 0%, var(--c-surface-card) 100%);
+    radial-gradient(ellipse at 70% 60%, rgba(0, 0, 0, 0.04), transparent 60%),
+    linear-gradient(180deg, #ffffff 0%, var(--c-surface-elevated) 100%);
+  border: 1px solid var(--c-hairline);
 }
 
 .vehicle-visual__glow {
@@ -711,8 +757,8 @@ h4 {
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba(255, 255, 255, 0.08) 0%,
-    rgba(28, 105, 212, 0.08) 40%,
+    rgba(0, 0, 0, 0.06) 0%,
+    rgba(0, 0, 0, 0.03) 40%,
     transparent 70%
   );
   pointer-events: none;
@@ -733,7 +779,7 @@ h4 {
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: var(--c-body);
+  color: var(--c-muted);
 }
 
 .vehicle-visual__panel strong {
@@ -758,7 +804,7 @@ h4 {
 }
 
 /* =====================================================================
-   Price stack / price pill (rectangular display)
+   Price stack / price pill
    ===================================================================== */
 
 .price-stack {
@@ -775,8 +821,8 @@ h4 {
   padding: var(--space-xs) var(--space-md);
   border: 1px solid var(--c-ink);
   border-radius: var(--radius-none);
-  background: var(--c-canvas);
-  color: var(--c-ink);
+  background: var(--c-ink);
+  color: #ffffff;
   font-size: 24px;
   font-weight: 700;
   letter-spacing: 0;
@@ -793,7 +839,7 @@ h4 {
 }
 
 /* =====================================================================
-   Intro strip — hero band
+   Intro strip — hero band (LIGHT)
    ===================================================================== */
 
 .intro-strip {
@@ -801,13 +847,13 @@ h4 {
   grid-template-columns: minmax(0, 1.1fr) minmax(360px, 0.9fr);
   gap: var(--space-xxl);
   align-items: start;
-  padding: var(--space-xxl) 0;
+  padding: var(--space-xxl) var(--space-xl);
   border-top: 1px solid var(--c-hairline);
   border-bottom: 1px solid var(--c-hairline);
   position: relative;
   background:
-    radial-gradient(ellipse at 80% 50%, rgba(28, 105, 212, 0.06), transparent 60%),
-    linear-gradient(180deg, var(--c-canvas) 0%, var(--c-surface-soft) 100%);
+    radial-gradient(ellipse at 80% 50%, rgba(0, 0, 0, 0.03), transparent 60%),
+    linear-gradient(180deg, #ffffff 0%, var(--c-canvas) 100%);
 }
 
 .intro-strip__copy {
@@ -831,53 +877,51 @@ h4 {
   gap: var(--space-md);
 }
 
+/* FIX: stats stack vertically — no more text overflow in narrow side column */
 .intro-strip__stats {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1px;
-  background: var(--c-hairline);
-  border: 1px solid var(--c-hairline);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
 }
 
 .quick-stat {
-  display: block;
-  padding: var(--space-lg);
-  background: var(--c-canvas);
-  border: 0;
-  border-radius: var(--radius-none);
+  background: #ffffff;
+  border: 1px solid var(--c-hairline);
+  border-radius: 0;
+  padding: 16px 20px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  align-items: center;
+  box-shadow: var(--shadow-card);
 }
 
 .quick-stat strong {
-  display: block;
-  margin-bottom: var(--space-xs);
-  font-size: 32px;
+  font-size: 14px;
   font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: 0;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: var(--c-ink);
+  color: #000;
+  white-space: nowrap;
 }
 
 .quick-stat p {
   margin: 0;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--c-body);
+  font-size: 13px;
+  font-weight: 300;
+  color: #2a2a2a;
   line-height: 1.4;
 }
 
 /* =====================================================================
-   Trust strip
+   Trust strip (light)
    ===================================================================== */
 
 .trust-strip {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1px;
-  background: var(--c-hairline);
-  border: 1px solid var(--c-hairline);
+  gap: var(--space-md);
 }
 
 .trust-strip__item {
@@ -885,9 +929,10 @@ h4 {
   gap: var(--space-md);
   align-items: flex-start;
   padding: var(--space-lg);
-  background: var(--c-surface-card);
-  border: 0;
+  background: #ffffff;
+  border: 1px solid var(--c-hairline);
   border-radius: var(--radius-none);
+  box-shadow: var(--shadow-card);
 }
 
 .trust-strip__item span {
@@ -905,11 +950,11 @@ h4 {
   font-size: 14px;
   font-weight: 300;
   line-height: 1.6;
-  color: var(--c-body-strong);
+  color: var(--c-body);
 }
 
 /* =====================================================================
-   Services / cards grid
+   Services / cards grid (light)
    ===================================================================== */
 
 .service-grid,
@@ -928,9 +973,10 @@ h4 {
   display: grid;
   gap: var(--space-md);
   padding: var(--space-lg);
-  background: var(--c-surface-card);
+  background: #ffffff;
   border: 1px solid var(--c-hairline);
   border-radius: var(--radius-none);
+  box-shadow: var(--shadow-card);
   color: var(--c-body);
 }
 
@@ -941,16 +987,17 @@ h4 {
 .service-card__index {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  border: 1px solid var(--c-ink);
+  justify-content: flex-start;
+  width: auto;
+  height: auto;
+  border: 0;
   border-radius: var(--radius-none);
-  background: var(--c-canvas);
+  background: transparent;
   color: var(--c-ink);
-  font-size: 14px;
+  font-size: 32px;
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: 0;
+  line-height: 1;
 }
 
 .service-card h3,
@@ -997,15 +1044,15 @@ h4 {
   height: 56px;
   border: 1px solid var(--c-ink);
   border-radius: var(--radius-none);
-  background: var(--c-canvas);
-  color: var(--c-ink);
+  background: var(--c-ink);
+  color: #ffffff;
   font-size: 18px;
   font-weight: 700;
   letter-spacing: 1.5px;
 }
 
 /* =====================================================================
-   Contact band / commercial band
+   Contact band / commercial band (light)
    ===================================================================== */
 
 .contact-band,
@@ -1016,13 +1063,11 @@ h4 {
   justify-content: space-between;
   gap: var(--space-xl);
   padding: var(--space-xxl) var(--space-xl);
-  background: var(--c-surface-soft);
-  border-top: 1px solid var(--c-hairline);
-  border-bottom: 1px solid var(--c-hairline);
-  border-left: 0;
-  border-right: 0;
+  background: #ffffff;
+  border: 1px solid var(--c-hairline);
   border-radius: var(--radius-none);
   position: relative;
+  box-shadow: var(--shadow-card);
 }
 
 .contact-band::before,
@@ -1040,6 +1085,7 @@ h4 {
 .vehicle-commercial-band h2 {
   font-size: 32px;
   letter-spacing: 0;
+  color: var(--c-ink);
 }
 
 .contact-band p,
@@ -1057,7 +1103,7 @@ h4 {
 }
 
 /* =====================================================================
-   Chat widget — rectangular bot/user bubbles
+   Chat widget — light surfaces, black header for emphasis
    ===================================================================== */
 
 .chat-widget {
@@ -1066,10 +1112,11 @@ h4 {
   bottom: var(--space-lg);
   z-index: 40;
   width: min(380px, calc(100vw - 32px));
-  background: var(--c-surface-card);
+  background: #ffffff;
   border: 1px solid var(--c-hairline);
   border-radius: var(--radius-none);
   overflow: hidden;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
 }
 
 .chat-widget::before {
@@ -1086,7 +1133,7 @@ h4 {
   gap: var(--space-sm);
   padding: var(--space-md);
   border-bottom: 1px solid var(--c-hairline);
-  background: var(--c-canvas);
+  background: #000000;
 }
 
 .chat-widget__identity {
@@ -1112,7 +1159,7 @@ h4 {
   font-weight: 400;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  color: var(--c-muted);
+  color: #b0b0b0;
 }
 
 .chat-widget__identity strong {
@@ -1120,15 +1167,15 @@ h4 {
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: var(--c-ink);
+  color: #ffffff;
 }
 
 .chat-widget__avatar {
   width: 40px;
   height: 40px;
-  border-radius: var(--radius-full); /* circular avatar = functional control */
+  border-radius: var(--radius-full);
   object-fit: cover;
-  background: var(--c-ink);
+  background: #ffffff;
   border: 1px solid var(--c-hairline);
   flex: none;
 }
@@ -1138,10 +1185,10 @@ h4 {
   align-items: center;
   height: 28px;
   padding: 0 var(--space-sm);
-  border: 1px solid var(--c-hairline);
+  border: 1px solid #ffffff;
   border-radius: var(--radius-none);
-  background: var(--c-surface-elevated);
-  color: var(--c-ink);
+  background: transparent;
+  color: #ffffff;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -1151,27 +1198,29 @@ h4 {
 .chat-widget__toggle {
   width: 32px;
   height: 32px;
-  border: 1px solid var(--c-hairline);
+  border: 1px solid #ffffff;
   border-radius: var(--radius-none);
-  background: var(--c-surface-card);
-  color: var(--c-ink);
+  background: transparent;
+  color: #ffffff;
   font-size: 18px;
   line-height: 1;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 150ms ease, color 150ms ease;
 }
 
 .chat-widget__toggle:hover {
-  background: var(--c-ink);
-  color: var(--c-canvas);
+  background: #ffffff;
+  color: #000000;
 }
 
 .chat-widget__body {
   display: grid;
   gap: var(--space-sm);
   padding-bottom: var(--space-sm);
+  background: #ffffff;
 }
 
 .chat-widget--collapsed .chat-widget__body {
@@ -1203,7 +1252,7 @@ h4 {
   object-fit: cover;
   flex: none;
   border: 1px solid var(--c-hairline);
-  background: var(--c-ink);
+  background: #ffffff;
 }
 
 .chat-bubble {
@@ -1219,13 +1268,13 @@ h4 {
 .chat-bubble--bot {
   background: var(--c-surface-elevated);
   border: 1px solid var(--c-hairline);
-  color: var(--c-body-strong);
+  color: var(--c-ink);
 }
 
 .chat-bubble--user {
-  background: var(--c-ink);
-  color: var(--c-canvas);
-  border: 1px solid var(--c-ink);
+  background: #000000;
+  color: #ffffff;
+  border: 1px solid #000000;
 }
 
 .chat-suggestions {
@@ -1242,19 +1291,20 @@ h4 {
   padding: 0 var(--space-sm);
   border: 1px solid var(--c-hairline);
   border-radius: var(--radius-none);
-  background: var(--c-canvas);
+  background: #ffffff;
   color: var(--c-ink);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background-color 150ms ease, color 150ms ease;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
 }
 
 .suggestion-pill:hover {
   background: var(--c-ink);
-  color: var(--c-canvas);
+  color: #ffffff;
+  border-color: var(--c-ink);
 }
 
 .chat-form {
@@ -1269,7 +1319,7 @@ h4 {
   padding: 0 var(--space-md);
   border: 1px solid var(--c-hairline);
   border-radius: var(--radius-none);
-  background: var(--c-surface-card);
+  background: #ffffff;
   color: var(--c-ink);
   font-size: 14px;
   font-weight: 300;
@@ -1338,9 +1388,10 @@ h4 {
 .vehicle-hero-head__price {
   width: min(380px, 100%);
   padding: var(--space-lg);
-  background: var(--c-surface-card);
+  background: #ffffff;
   border: 1px solid var(--c-hairline);
   border-radius: var(--radius-none);
+  box-shadow: var(--shadow-card);
   flex: none;
 }
 
@@ -1380,7 +1431,7 @@ h4 {
   padding: 0 var(--space-md);
   border: 1px solid var(--c-hairline);
   border-radius: var(--radius-none);
-  background: transparent;
+  background: #ffffff;
   color: var(--c-ink);
   font-size: 12px;
   font-weight: 700;
@@ -1401,16 +1452,17 @@ h4 {
 
 .vehicle-gallery {
   padding: 0;
-  background: var(--c-surface-card);
+  background: #ffffff;
   border: 1px solid var(--c-hairline);
   border-radius: var(--radius-none);
   overflow: hidden;
+  box-shadow: var(--shadow-card);
 }
 
 .vehicle-gallery__main {
   position: relative;
   height: 540px;
-  background: var(--c-canvas);
+  background: var(--c-surface-elevated);
   border-bottom: 1px solid var(--c-hairline);
   overflow: hidden;
 }
@@ -1448,7 +1500,7 @@ h4 {
   padding: 0;
   border: 0;
   border-radius: var(--radius-none);
-  background: var(--c-canvas);
+  background: #ffffff;
   cursor: pointer;
   overflow: hidden;
 }
@@ -1457,12 +1509,12 @@ h4 {
   width: 100%;
   height: 96px;
   object-fit: cover;
-  opacity: 0.55;
+  opacity: 0.65;
   transition: opacity 180ms ease;
 }
 
 .vehicle-thumb:hover img {
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
 .vehicle-thumb.is-active img {
@@ -1479,7 +1531,7 @@ h4 {
   gap: var(--space-xs);
   padding: var(--space-lg);
   border-top: 1px solid var(--c-hairline);
-  background: var(--c-surface-soft);
+  background: var(--c-surface-elevated);
 }
 
 .vehicle-gallery__hint strong {
@@ -1500,11 +1552,12 @@ h4 {
 /* Vehicle summary sticky panel */
 .vehicle-summary {
   padding: var(--space-lg);
-  background: var(--c-surface-card);
+  background: #ffffff;
   border: 1px solid var(--c-hairline);
   border-radius: var(--radius-none);
   position: sticky;
   top: 120px;
+  box-shadow: var(--shadow-card);
 }
 
 .vehicle-summary__top {
@@ -1538,8 +1591,8 @@ h4 {
   gap: var(--space-md);
   align-items: center;
   margin: var(--space-lg) 0;
-  padding: var(--space-md);
-  background: var(--c-surface-soft);
+  padding: var(--space-md) var(--space-md) var(--space-md) var(--space-lg);
+  background: var(--c-surface-elevated);
   border: 1px solid var(--c-hairline);
   border-radius: var(--radius-none);
   position: relative;
@@ -1560,7 +1613,8 @@ h4 {
   max-height: 48px;
   object-fit: contain;
   flex: none;
-  background: var(--c-ink);
+  background: #ffffff;
+  border: 1px solid var(--c-hairline);
   padding: 4px 8px;
 }
 
@@ -1641,8 +1695,9 @@ h4 {
 
 .point-card {
   padding: var(--space-lg);
-  background: var(--c-surface-soft);
+  background: var(--c-surface-elevated);
   border: 1px solid var(--c-hairline);
+  box-shadow: none;
 }
 
 .detail-list {
@@ -1658,7 +1713,7 @@ h4 {
   padding: var(--space-sm) 0;
   font-size: 14px;
   font-weight: 300;
-  color: var(--c-body-strong);
+  color: var(--c-body);
   border-bottom: 1px solid var(--c-hairline);
   letter-spacing: 0;
 }
@@ -1677,7 +1732,7 @@ h4 {
 
 .related-card__media {
   position: relative;
-  background: var(--c-surface-soft);
+  background: var(--c-surface-elevated);
 }
 
 .related-card__body {
@@ -1696,7 +1751,7 @@ h4 {
 }
 
 /* =====================================================================
-   Hub (multi-dealer landing) — kept for compatibility
+   Hub (multi-dealer landing)
    ===================================================================== */
 
 .hub-hero {
@@ -1705,7 +1760,7 @@ h4 {
 
 .hub-hero h1 {
   margin: var(--space-md) 0 var(--space-md);
-  font-size: clamp(48px, 7vw, 72px);
+  font-size: clamp(44px, 7vw, 72px);
 }
 
 .hub-grid,
@@ -1719,9 +1774,10 @@ h4 {
 .hub-card,
 .hub-note {
   padding: var(--space-lg);
-  background: var(--c-surface-card);
+  background: #ffffff;
   border: 1px solid var(--c-hairline);
   border-radius: var(--radius-none);
+  box-shadow: var(--shadow-card);
   color: var(--c-body);
 }
 
@@ -1730,7 +1786,8 @@ h4 {
   align-items: center;
   min-height: 90px;
   margin-bottom: var(--space-md);
-  background: var(--c-ink);
+  background: #ffffff;
+  border: 1px solid var(--c-hairline);
   padding: var(--space-sm) var(--space-md);
 }
 
@@ -1780,7 +1837,7 @@ h4 {
 }
 
 /* =====================================================================
-   Hero trust strip (BMW M)
+   Hero trust strip (BMW M — light surface)
    ===================================================================== */
 
 .hero-trust {
@@ -1790,8 +1847,8 @@ h4 {
   margin-top: var(--space-md, 16px);
   padding: 12px 16px;
   border-left: 4px solid var(--c-ink);
-  background: var(--c-surface-card);
-  color: var(--c-body-strong);
+  background: var(--c-surface-elevated);
+  color: var(--c-ink);
   font-size: 13px;
   font-weight: 400;
   letter-spacing: 0.3px;
@@ -1857,6 +1914,12 @@ h4 {
     width: min(100%, calc(100% - 24px));
   }
 
+  main.site-shell,
+  main.detail-shell,
+  main.hub-shell {
+    padding-top: 72px;
+  }
+
   h1 {
     font-size: clamp(40px, 9vw, 56px);
   }
@@ -1868,8 +1931,10 @@ h4 {
   .site-header {
     flex-wrap: wrap;
     gap: var(--space-sm);
-    padding: var(--space-sm) 0;
-    margin-bottom: var(--space-xl);
+    padding: 10px 16px;
+    top: 8px;
+    width: calc(100% - 16px);
+    margin: 8px auto 0;
   }
 
   .site-header > .button {
@@ -1881,7 +1946,6 @@ h4 {
   .related-grid,
   .sales-steps,
   .trust-strip,
-  .intro-strip__stats,
   .detail-points,
   .hub-grid,
   .hub-features,
@@ -1945,16 +2009,24 @@ h4 {
     width: 100%;
     border-radius: var(--radius-none);
   }
+
+  .intro-strip {
+    padding: var(--space-xl) var(--space-lg);
+  }
 }
 
 @media (max-width: 480px) {
   h1 {
-    font-size: clamp(36px, 11vw, 48px);
+    font-size: clamp(36px, 11vw, 44px);
     line-height: 1.05;
   }
 
   .brand-mark__logo {
-    max-width: 130px;
+    max-width: 120px;
+  }
+
+  .brand-mark__media {
+    min-width: 60px;
   }
 
   .vehicle-thumb img {
@@ -1962,6 +2034,11 @@ h4 {
   }
 
   .intro-strip {
-    padding: var(--space-xl) 0;
+    padding: var(--space-xl) var(--space-md);
+  }
+
+  .quick-stat {
+    grid-template-columns: 1fr;
+    gap: 4px;
   }
 }
