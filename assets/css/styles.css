@@ -288,10 +288,14 @@ h4 {
   padding-bottom: var(--space-section);
 }
 
-/* Dealer page main wrapper — leaves room for the fixed Elite header */
-main.site-shell,
-main.detail-shell,
-main.hub-shell {
+/* Dealer page main wrapper — leaves room for the fixed Elite pill header.
+   NOTE: .site-shell is on the wrapping <div>, not on <main>, so we use
+   descendant selector to reach the actual <main> element. */
+.site-shell > main,
+.detail-shell > main,
+.hub-shell > main,
+.site-shell main,
+.detail-shell main {
   padding-top: 112px;
 }
 
@@ -2006,10 +2010,12 @@ main.hub-shell {
     width: min(100%, calc(100% - 24px));
   }
 
-  main.site-shell,
-  main.detail-shell,
-  main.hub-shell {
-    padding-top: 84px;
+  .site-shell > main,
+  .detail-shell > main,
+  .hub-shell > main,
+  .site-shell main,
+  .detail-shell main {
+    padding-top: 96px;
   }
 
   .site-header {
